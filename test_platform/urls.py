@@ -18,11 +18,11 @@ from django.urls import path, include
 from user_app import views
 
 
-urlpatterns = {
+urlpatterns = [
     path('', views.index),
     path('admin/', admin.site.urls),
     path('index/', views.index),
     path('login_action/', views.login_action),
     path('home/', views.home),
     path('logout/', views.logout),
-}
+]
