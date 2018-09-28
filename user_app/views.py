@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import auth
 
-# Create your views here.
+# Create your views here.https://sobooks.cc/books/10313.html#respond
 
 def index(request):
     return render(request, "index.html")

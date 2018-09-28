@@ -34,6 +34,9 @@
       {{ error }}
       {% csrf_token %}
       <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+      <div id="sticky-nav"><a class="gocom" onclick="document.getElementById(&#39;comment&#39;).focus();return false;">
+        <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+      </div>
     </form>
 
   </div> <!-- /container -->
