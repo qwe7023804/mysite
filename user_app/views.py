@@ -4,12 +4,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.https://sobooks.cc/books/10313.html#respond
-@login_required
+
 def index(request):
     return render(request, "index.html")
 
 # 处理登录请求
-@login_required
 def login_action(request):
     if request.method == "POST":
         username = request.POST.get("username")
