@@ -1,6 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib import auth
+from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 #from django.contrib.auth.decorators import login_required
 
@@ -13,15 +12,15 @@ def index(request):
 
 def login_action(request):
     if request.method == "POST":
-        username = request.POST.get("username", '')
-        password = request.POST.get("password", '')
+        username = request.POST.get("username")
+        password = request.POST.get("password")
         #调用数据库用户名和密码进行
         user = authenticate(request, username = username, password = password)
         if user is not None:
-            #return HttpResponse('success')
+            #登录状态
             login(request, user)
             response = HttpResponseRedirect('/home/')
-            response.set_cookie('username', username, 3600)
+            request.session['user'] = username
             return response
         else:
             return render(request, 'index.html',
@@ -30,11 +29,10 @@ def login_action(request):
         return render(request, 'index.html')
 
 def home(request):
-    username = request.COOKIES.get('username', '')
+    username = request.session.get('user', '')
     return render(request, 'home.html', {'username': username})
 
 def logout_view(request):
     logout(request)
-    #response = HttpResponseRedirect('/index/')
     #清除cookie里保存的username
     return render(request, 'index.html')
