@@ -21,9 +21,9 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('', views.index),
     path('admin/', admin.site.urls),
-    path('index/', views.index),                            #主页面（登录）
-    path('login_action/', views.login_action),              #登录路径
-    path('home/', views.home),                              #主页路径
-    path('logout_view/', views.logout_view),                #退出路径
-    path('login_action/', auth_views.LoginView.as_view()),  #限制登录
+    path('index/', views.index),
+    path('login_action/', views.login_action),
+    path('home/', views.home),
+    path('logout_view/', views.logout_view),
+    path('login_action/', auth_views.LoginView.as_view()),
 ]
