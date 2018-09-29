@@ -4,11 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.https://sobooks.cc/books/10313.html#respond
-<<<<<<< HEAD
-#@login_required
-=======
 
->>>>>>> e22807a1af2e66e4d2a4ce879e12a3e8fa17f6d9
 def index(request):
     return render(request, "index.html")
 
