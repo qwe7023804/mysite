@@ -122,7 +122,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static/'),
-)
+    )
 
 #限制访问地址
 #login_required URL
