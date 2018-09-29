@@ -126,4 +126,4 @@ STATICFILES_DIRS = (
 
 #限制访问地址
 #login_required URL
-#LOGIN_URL = '/login_action/'
+LOGIN_URL = '/login_action/'
