@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.https://sobooks.cc/books/10313.html#respond
 
 def index(request):
-    return render(request, "index.html")
+    return render(request, "Index.html")
 
 # 处理登录请求
 def login_action(request):
@@ -22,10 +22,10 @@ def login_action(request):
             request.session['user'] = username
             return response
         else:
-            return render(request, 'index.html',
+            return render(request, 'Index.html',
                 {'error': 'username or password error'})
     else:
-        return render(request, 'index.html')
+        return render(request, 'Index.html')
 
 #主页面
 @login_required
@@ -33,8 +33,13 @@ def home(request):
     username = request.session.get('user', '')
     return render(request, 'home.html', {'username': username})
 
+@login_required
+def create_project(request):
+    username = request.session.get('user', '')
+    return render(request, 'Create_Project.html', {'username': username})
+
 #退出
 def logout_view(request):
     logout(request)
     #清除cookie里保存的username
-    return render(request, 'index.html')
+    return render(request, 'Index.html')

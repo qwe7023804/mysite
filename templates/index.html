@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 {% load static %}
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,6 +19,7 @@
 </head>
 
 <body>
+
   <div class="container">
     <!-- 登录框 -->
     <form class="form-signin" method="post" action="/login_action/">
@@ -33,6 +35,14 @@
         <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
       </div>
       <p class="bg-danger">{{ error }}</p>
+
+      <div class="form-group">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"> Remember me
+            </label>
+          </div>
+      </div>
       {% csrf_token %}
       <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
       <div id="sticky-nav"><a class="gocom" onclick="document.getElementById(&#39;comment&#39;).focus();return false;">
