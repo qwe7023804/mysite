@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from user_app.models import Project
 
 # Create your views here.https://sobooks.cc/books/10313.html#respond
 
@@ -30,9 +31,12 @@ def login_action(request):
 #主页面
 @login_required
 def home(request):
+    project_list = Project.objects.all()    #获取表所有信息
     username = request.session.get('user', '')
-    return render(request, 'home.html', {'username': username})
+    return render(request, 'home.html', {'username': username,
+                                        'projects': project_list})
 
+#创建项目页
 @login_required
 def create_project(request):
     username = request.session.get('user', '')
