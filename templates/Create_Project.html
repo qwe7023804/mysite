@@ -10,19 +10,20 @@
   <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="icon" href="{% static 'images/favicon.ico' %}">
+
 
   <title>测试平台</title>
-
+  <link rel="icon" href="{% static 'images/favicon.ico' %}">
   <!-- Bootstrap core CSS -->
-  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-  <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'css/framework.css'%}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/framework.css'%}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/datetimepicker.css' %}">
 
 </head>
 
+
 <body>
-  {% csrf_token %}
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -47,41 +48,41 @@
       </div>
     </div>
   </nav>
-
   <div class="row">
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
       <h2 class="page-header">创建项目</h2>
-      <form class="form-horizontal">
+      <form class="form-horizontal" method="post" action="/api/add_project/">
+        {% csrf_token %}
         <div class="form-group">
           <label for="项目名称" class="col-sm-2 control-label">项目名称</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputname">
+            <input type="text" class="form-control" id="prject_name" name="prject_name"> {{ project.name }}
           </div>
         </div>
         <div class="form-group">
-          <label for="创建时间" class="col-sm-2 control-label">创建时间</label>
+          <label for="创建时间" class="col-sm-2 control-label form_datetime1">创建时间</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="project_time">
+              <input size="16" type="text" class="form-control form_datetime1" value="2018.01.01" id="project_time" name="project_time">
           </div>
+
+        </div>
         <div class="from-group">
           <label for="状态" class="col-sm-2 control-label">状态</label>
           <div class="radio col-sm-10">
             <label class="radio-inline">
-              <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+              <input type="radio" name="True" id="optionsRadios1" name="project_status" value="option1">{{ project.status }}
               开启
             </label>
             <label class="radio-inline">
-              <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+              <input type="radio" name="False" id="optionsRadios2" value="option2">
               关闭
             </label>
           </div>
         </div>
-
-        </div>
         <div class="form-group">
           <label for="项目备注" class="col-sm-2 control-label">项目备注</label>
           <div class="col-sm-10">
-            <textarea class="form-control" rows="3" placeholder="关于项目..."></textarea>
+            <textarea class="form-control" rows="3" name="project_remarks" placeholder="关于项目...">{{ project.remarks }}</textarea>
           </div>
         </div>
         <div class="form-group">
@@ -91,22 +92,43 @@
           </div>
         </div>
       </form>
+
     </div>
   </div>
 
   <!-- Bootstrap core JavaScript
     ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
-  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/datetimepicker.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/datetimepicker.zh-CN.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/moment.js' %}"></script>
   <script>
     window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
   </script>
-  <script src="{% static 'js/bootstrap.min.js' %}"></script>
-  <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-  <script src="{% static 'js/holder.min.js' %}"></script>
+  <!-- Just to make our placeholder images work. Don't actually copy the next line! 背景 -->
+  <script type="text/javascript" src="{% static 'js/holder.min.js' %}"></script>
   <div id="sticky-nav"><a class="gocom" onclick="document.getElementById(&#39;comment&#39;).focus();return false;">
       <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
   </div>
+  <!--时间控件 -->
+  <script type="text/javascript">
+    $('a[href^="#"]').click(function() {
+      var the_id = $(this).attr("href");
+      $('html, body').animate({
+        scrollTop: $(the_id).offset().top
+      }, 'slow');
+      return false;
+    });
+
+    $(".form_datetime1").datetimepicker({
+      format: 'yyyy.mm.dd',
+      forceParse: true
+    });
+
+  </script>
+
 
 </body>
 

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from user_app import views
+from user_app import views, urls
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -27,4 +27,5 @@ urlpatterns = [
     path('logout_view/', views.logout_view),
     path('login_action/', auth_views.LoginView.as_view()),
     path('create_project/', views.create_project),
+    path('api/', include('user_app.urls')),
 ]

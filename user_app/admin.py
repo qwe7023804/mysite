@@ -5,8 +5,8 @@ from user_app.models import Project
 
 
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = [ 'id', 'name', 'create_time', 'status', 'remarks']
-    search_fields = ['name']    #搜索栏
-    list_filter = ['status']    #过滤器
+    list_display = [ 'id', 'project_name', 'create_time', 'project_status', 'project_remarks']
+    search_fields = ['project_name']    #搜索栏
+    list_filter = ['project_status']    #过滤器
 
 admin.site.register(Project, ProjectAdmin)

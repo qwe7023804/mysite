@@ -8,10 +8,10 @@ create_time 创建时间
 remarks 备注
 '''
 class Project(models.Model):
-    name = models.CharField(max_length=20)
-    status = models.BooleanField()
+    project_name = models.CharField(max_length=20)
+    project_status = models.BooleanField()
     create_time = models.DateTimeField(auto_now=True)
-    remarks = models.CharField(max_length=100)
+    project_remarks = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.name
+        return self.project_name
