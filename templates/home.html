@@ -104,12 +104,8 @@
                 <td>{{ project.project_remarks }}</td>
                 <td>{{ project.project_status }}</td>
                 <td>
-                  <!-- <a href="/api/get_project_list/?id={{ project.id }}">编辑 </a><a href="/api/delete_project/?id={{ project.id }}"> 删除</a> -->
                     <a class="btn btn-success btn-lg" href="/api/get_project_list/?id={{ project.id }}" role="button">编辑</a>
-
-                  <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">
-                    <a href="/api/delete_project/?id={{ project.id }}">删除</a>
-                  </button>
+                    <a class="btn btn-success btn-lg" href="/api/delete_project/?id={{ project.id }}" role="button">删除</a>
                 </td>
               </tr>
               {% endfor %}
