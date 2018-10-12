@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!-- saved from url=(0042)https://v3.bootcss.com/examples/dashboard/ -->
 <html lang="zh-CN">
+
 <head>
   {% load static %}
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -80,30 +81,6 @@
       </div>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <h1 class="page-header">项目管理</h1>
-        <!-- 添加图片
-          <div class="row placeholders">
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-          </div> -->
-
         <h4><a class="sub-header" href='/create_project/'>创建项目</a></h4>
         <div class="table-responsive" method="get" action="/home/">
           <table class="table table-striped">
@@ -118,16 +95,24 @@
               </tr>
             </thead>
             <tbody>
-              {% for project in projects %}
+
               <tr>
+                {% for project in projects %}
                 <td>{{ project.id }}</td>
                 <td>{{ project.project_name }}</td>
-                <td>{{ project.create_time | date:'Y-m-d H:i:s' }}</td>
+                <td>{{ project.create_time }}</td>
                 <td>{{ project.project_remarks }}</td>
                 <td>{{ project.project_status }}</td>
-                <td>编辑</td>
-              {% endfor %}
+                <td>
+                  <!-- <a href="/api/get_project_list/?id={{ project.id }}">编辑 </a><a href="/api/delete_project/?id={{ project.id }}"> 删除</a> -->
+                    <a class="btn btn-success btn-lg" href="/api/get_project_list/?id={{ project.id }}" role="button">编辑</a>
+
+                  <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">
+                    <a href="/api/delete_project/?id={{ project.id }}">删除</a>
+                  </button>
+                </td>
               </tr>
+              {% endfor %}
             </tbody>
           </table>
         </div>
@@ -144,7 +129,6 @@
   </script>
   <script src="{% static 'js/bootstrap.min.js' %}"></script>
   <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-  <script src="{% static 'js/holder.min.js' %}"></script>
   <div id="sticky-nav"><a class="gocom" onclick="document.getElementById(&#39;comment&#39;).focus();return false;">
       <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
   </div>

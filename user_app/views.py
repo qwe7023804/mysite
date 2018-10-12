@@ -3,8 +3,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from user_app.models import Project
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from django.utils import timezone
 # Create your views here.https://sobooks.cc/books/10313.html#respond
 
 def index(request):
@@ -34,6 +33,8 @@ def login_action(request):
 def home(request):
     username = request.session.get('user', '')
     project_list = Project.objects.all()    #获取表所有信息
+    for i in project_list:
+        print(i.create_time)
     return render(request, 'home.html', {'username': username,
                                         'projects': project_list})
 
@@ -41,7 +42,9 @@ def home(request):
 @login_required
 def create_project(request):
     username = request.session.get('user', '')
-    return render(request, 'Create_Project.html', {'username': username})
+    time_now = timezone.now()
+    return render(request, 'Create_Project.html', {'username': username,
+                                                    'time_now': time_now})
 
 #退出
 def logout_view(request):

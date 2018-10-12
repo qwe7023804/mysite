@@ -15,3 +15,12 @@ class Project(models.Model):
 
     def __str__(self):
         return self.project_name
+
+class Module(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100, blank=False, default="")
+    describe = models.TextField(default="")
+    create_time = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
