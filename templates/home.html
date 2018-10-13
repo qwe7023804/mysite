@@ -82,7 +82,7 @@
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <h1 class="page-header">项目管理</h1>
         <h4><a class="sub-header" href='/create_project/'>创建项目</a></h4>
-        <div class="table-responsive" method="get" action="/home/">
+        <div class="table-responsive" method="get" action="/api/home/">
           <table class="table table-striped">
             <thead>
               <tr>
@@ -95,7 +95,6 @@
               </tr>
             </thead>
             <tbody>
-
               <tr>
                 {% for project in projects %}
                 <td>{{ project.id }}</td>
@@ -128,7 +127,5 @@
   <div id="sticky-nav"><a class="gocom" onclick="document.getElementById(&#39;comment&#39;).focus();return false;">
       <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
   </div>
-
 </body>
-
 </html>

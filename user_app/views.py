@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from user_app.models import Project
+from project_app.models import Project
 from django.utils import timezone
 # Create your views here.https://sobooks.cc/books/10313.html#respond
 
@@ -19,7 +19,7 @@ def login_action(request):
         if user is not None:
             #登录状态
             login(request, user)
-            response = HttpResponseRedirect('/home/')
+            response = HttpResponseRedirect('/api/home/')
             request.session['user'] = username
             return response
         else:
@@ -28,15 +28,7 @@ def login_action(request):
     else:
         return render(request, 'Index.html')
 
-#主页面
-@login_required
-def home(request):
-    username = request.session.get('user', '')
-    project_list = Project.objects.all()    #获取表所有信息
-    for i in project_list:
-        print(i.create_time)
-    return render(request, 'home.html', {'username': username,
-                                        'projects': project_list})
+
 
 #创建项目页
 @login_required

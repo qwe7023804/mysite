@@ -13,9 +13,6 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/signin.css' %}">
   <!-- 引用CDN样式 -->
-  <!-- <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://v3.bootcss.com/examples/signin/signin.css" rel="stylesheet"> -->
-
 </head>
 
 <body>
@@ -35,13 +32,18 @@
         <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
       </div>
       <p class="bg-danger">{{ error }}</p>
-
       <div class="form-group">
-          <div class="checkbox">
-            <label>
-              <input type="checkbox"> Remember me
-            </label>
-          </div>
+        <ul class="pager">
+          <li class="previous"><a href="#"> 立即注册</a></li>
+          <li class="next"><a href="#">忘记密码</a></li>
+        </ul>
+      </div>
+      <div class="form-group">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> Remember me
+          </label>
+        </div>
       </div>
       {% csrf_token %}
       <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
