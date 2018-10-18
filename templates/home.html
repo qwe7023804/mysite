@@ -1,4 +1,4 @@
-{% extends 'base1.html' %}
+{% extends 'base.html' %}
 {% block title %}测试平台{% endblock %}
 
 {% block sidebar %}
@@ -15,7 +15,7 @@
 {% block main %}
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <h1 class="page-header">项目管理</h1>
-  <h4><a class="sub-header" href='/create_project/'>创建项目</a></h4>
+  <h4><a class="sub-header" href='/api/create_project/'>创建项目</a></h4>
   <div class="table-responsive" method="get" action="/api/home/">
     <table class="table table-striped">
       <thead>

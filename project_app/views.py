@@ -5,14 +5,25 @@ from django.http import JsonResponse
 from django.core.exceptions import ValidationError
 from django.http import HttpResponseRedirect
 from project_app import models
+from django.utils import timezone
 
 #主页面
 @login_required
 def home(request):
     username = request.session.get('user', '')
     project_list = models.Project.objects.all()    #获取表所有信息
-    return render(request, 'home.html', {'username': username,
+    return render(request, 'Home.html', {'username': username,
                                         'projects': project_list})
+#创建项目页
+@login_required
+def create_project(request):
+    eid = request.GET.get('id')
+    print(eid)
+    username = request.session.get('user', '')
+    time_now = timezone.now()
+    return render(request, 'Project_Information.html', {'username': username,
+                                                    'id': eid,
+                                                    'time_now': time_now})
 
 #添加创建项目接口
 def add_project(request):
@@ -32,15 +43,19 @@ def add_project(request):
                                         )
         return HttpResponseRedirect('/api/home/')
     else:
-        return render(request, 'Create_Project.html')
+        return render(request, 'Project_Information.html')
 
 
 #项目查询接口
 def get_project_list(request):
     eid = request.GET.get('id')
+    print(eid)
     project = models.Project.objects.filter(id=eid)
+    for i in project:
+        print(i)
     username = request.session.get('user', '')
-    return render(request, 'Edit_Project.html', {'status':200, 'message':'success',
+    return render(request, 'Project_Information.html', {'status':200, 'message':'success',
+                                                'id': eid,
                                                 'username': username,
                                                 'projects': project})
 

@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from project_app.models import Project
-from django.utils import timezone
+
 # Create your views here.https://sobooks.cc/books/10313.html#respond
 
 def index(request):
@@ -28,15 +28,6 @@ def login_action(request):
     else:
         return render(request, 'Home.html')
 
-
-
-#创建项目页
-@login_required
-def create_project(request):
-    username = request.session.get('user', '')
-    time_now = timezone.now()
-    return render(request, 'Create_Project.html', {'username': username,
-                                                    'time_now': time_now})
 
 #退出
 def logout_view(request):
