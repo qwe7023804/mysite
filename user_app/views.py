@@ -7,7 +7,7 @@ from django.utils import timezone
 # Create your views here.https://sobooks.cc/books/10313.html#respond
 
 def index(request):
-    return render(request, "Index.html")
+    return render(request, "Home.html")
 
 # 处理登录请求
 def login_action(request):
@@ -23,10 +23,10 @@ def login_action(request):
             request.session['user'] = username
             return response
         else:
-            return render(request, 'Index.html',
+            return render(request, 'Home.html',
                 {'error': 'username or password error'})
     else:
-        return render(request, 'Index.html')
+        return render(request, 'Home.html')
 
 
 
@@ -42,4 +42,4 @@ def create_project(request):
 def logout_view(request):
     logout(request)
     #清除cookie里保存的username
-    return render(request, 'Index.html')
+    return render(request, 'Home.html')

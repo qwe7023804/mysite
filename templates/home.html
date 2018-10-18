@@ -1,131 +1,51 @@
-<!DOCTYPE html>
-<!-- saved from url=(0042)https://v3.bootcss.com/examples/dashboard/ -->
-<html lang="zh-CN">
+{% extends 'base1.html' %}
+{% block title %}测试平台{% endblock %}
 
-<head>
-  {% load static %}
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+{% block sidebar %}
+<div class="col-sm-3 col-md-2 sidebar">
+  <ul class="nav nav-sidebar">
+    <li class="active"><a href="#">项目管理<span class="sr-only">(current)</span></a></li>
+    <li><a href="#">模块管理</a></li>
+    <li><a href="#">页面2</a></li>
+    <li><a href="#">页面3</a></li>
+  </ul>
+</div>
+{% endblock %}
 
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-
-  <title>测试平台</title>
-  <link rel="icon" href="{% static 'images/favicon.ico' %}">
-  <!-- Bootstrap core CSS -->
-  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-  <link crossorigin="anonymous" media="all" integrity="sha512-mjQPRAh2Y9A0sPdZzipNfPO7PT4g06mk0uZs15DbL/vsNCRGx1uRzWVzls9MJCoy2yRNjaMmEVFKJDpCui00mA==" rel="stylesheet" href="https://assets-cdn.github.com/assets/frameworks-df973073d880f28fbbae0263fb1ef62b.css">
-  <link crossorigin="anonymous" media="all" integrity="sha512-x3XWtGp2FswnywS4ehTjPN+9ZrQ/nzpjmzsqe4+O431WD/Y1+yIhoKC/5n8h1FqYe+Wu3Pk4Q/ZcLY2flUH6iw==" rel="stylesheet" href="https://assets-cdn.github.com/assets/github-19f6f486eb8ea86f813daa757a5e3870.css">
-
-
-  <!-- Custom styles for this template -->
-  <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
-
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
-
-<body>
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">欢迎，{{ username }}</a>
-        <a class="navbar-brand" href="/logout_view/">退出</a>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">功能测试</a></li>
-          <li><a href="#">接口测试</a></li>
-          <li><a href="#">白盒测试</a></li>
-        </ul>
-        <form class="navbar-form navbar-right">
-          <input type="text" class="form-control" placeholder="Search...">
-        </form>
-      </div>
-    </div>
-  </nav>
-
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-3 col-md-2 sidebar">
-        <ul class="nav nav-sidebar">
-          <li class="active"><a href="#">登录模块<span class="sr-only">(current)</span></a></li>
-          <li><a href="#">页面1</a></li>
-          <li><a href="#">页面2</a></li>
-          <li><a href="#">页面3</a></li>
-        </ul>
-        <ul class="nav nav-sidebar">
-          <li><a href="#">Nav item</a></li>
-          <li><a href="#">Nav item again</a></li>
-          <li><a href="#">One more nav</a></li>
-          <li><a href="#">Another nav item</a></li>
-          <li><a href="#">More navigation</a></li>
-        </ul>
-        <ul class="nav nav-sidebar">
-          <li><a href="#">Nav item again</a></li>
-          <li><a href="#">One more nav</a></li>
-          <li><a href="#">Another nav item</a></li>
-        </ul>
-      </div>
-      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <h1 class="page-header">项目管理</h1>
-        <h4><a class="sub-header" href='/create_project/'>创建项目</a></h4>
-        <div class="table-responsive" method="get" action="/api/home/">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>编号</th>
-                <th>项目名称</th>
-                <th>创建日期</th>
-                <th>备注</th>
-                <th>状态</th>
-                <th>操作</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                {% for project in projects %}
-                <td>{{ project.id }}</td>
-                <td>{{ project.project_name }}</td>
-                <td>{{ project.create_time }}</td>
-                <td>{{ project.project_remarks }}</td>
-                <td>{{ project.project_status }}</td>
-                <td>
-                    <a class="btn btn-success btn-lg" href="/api/get_project_list/?id={{ project.id }}" role="button">编辑</a>
-                    <a class="btn btn-success btn-lg" href="/api/delete_project/?id={{ project.id }}" role="button">删除</a>
-                </td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+{% block main %}
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+  <h1 class="page-header">项目管理</h1>
+  <h4><a class="sub-header" href='/create_project/'>创建项目</a></h4>
+  <div class="table-responsive" method="get" action="/api/home/">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>编号</th>
+          <th>项目名称</th>
+          <th>创建日期</th>
+          <th>备注</th>
+          <th>状态</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          {% for project in projects %}
+          <td>{{ project.id }}</td>
+          <td>{{ project.project_name }}</td>
+          <td>{{ project.create_time }}</td>
+          <td>{{ project.project_remarks }}</td>
+          <td>{{ project.project_status }}</td>
+          <td>
+            <a class="btn btn-success btn-lg" href="/api/get_project_list/?id={{ project.id }}" role="button">
+              编辑</a>
+            <a class="btn btn-success btn-lg" href="/api/delete_project/?id={{ project.id }}" role="button">
+              删除</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
-
-  <!-- Bootstrap core JavaScript
-    ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script src="{% static 'js/jquery.min.js' %}"></script>
-  <script>
-    window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
-  </script>
-  <script src="{% static 'js/bootstrap.min.js' %}"></script>
-  <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-  <div id="sticky-nav"><a class="gocom" onclick="document.getElementById(&#39;comment&#39;).focus();return false;">
-      <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
-  </div>
-</body>
-</html>
+</div>
+{% endblock %}
