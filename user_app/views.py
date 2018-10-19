@@ -3,7 +3,8 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from project_app.models import Project
-
+from django.contrib import messages
+from project_app.forms import LoginForm
 # Create your views here.https://sobooks.cc/books/10313.html#respond
 
 def index(request):
@@ -11,22 +12,22 @@ def index(request):
 
 # 处理登录请求
 def login_action(request):
-    if request.method == "POST":
-        username = request.POST.get("username")
-        password = request.POST.get("password")
-        #调用数据库用户名和密码进行
-        user = authenticate(request, username = username, password = password)
-        if user is not None:
-            #登录状态
+
+    if request.user.is_authenticated:
+        return redirect('/api/Home/')
+    login_form = LoginForm(request.POST.dict() or None)
+    if request.method == 'POST' and login_form.is_valid():
+        username = login_form.cleaned_data.get('username')
+        password = login_form.cleaned_data.get('password')
+        user = authenticate(username=username, password=password)
+        if user:
             login(request, user)
             response = HttpResponseRedirect('/api/home/')
-            request.session['user'] = username
             return response
         else:
-            return render(request, 'Home.html',
-                {'error': 'username or password error'})
-    else:
-        return render(request, 'Home.html')
+            messages.error(request, 'username or password error')
+            return render(request, 'Home.html')
+    return render(request, 'Home.html', {'login_form': login_form})
 
 
 #退出

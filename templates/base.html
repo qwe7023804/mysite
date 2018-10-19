@@ -41,13 +41,13 @@
     </div>
   </nav>
 
-      {% block sidebar %}
-      <!-- 侧栏 -->
-      {% endblock %}
+  {% block sidebar %}
+  <!-- 侧栏 -->
+  {% endblock %}
 
-      {% block main %}
-      <!-- 中间内容 -->
-      {% endblock %}
+  {% block main %}
+  <!-- 中间内容 -->
+  {% endblock %}
 
   {% else %}
   <!-- 跳转至登录 -->
@@ -65,8 +65,14 @@
       <div class="form-group">
         <label for="exampleInputPassword1">Password</label>
         <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+
       </div>
-      <p class="bg-danger">{{ error }}</p>
+
+      {% if messages %}
+      {% for message in messages %}
+      <p {% if message.tags %} class="{{ message.tags }} bg-danger" {% endif %}>{{ message }}</p>
+      {% endfor %}{% endif %}
+      
       <div class="form-group">
         <ul class="pager">
           <li class="previous"><a href="#"> 立即注册</a></li>
@@ -82,7 +88,7 @@
       </div>
       {% csrf_token %}
       <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
-      </form>
+    </form>
   </div>
   {% endif %}
 
