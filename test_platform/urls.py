@@ -19,9 +19,11 @@ from user_app import views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('', views.index),
+
     path('admin/', admin.site.urls),
     path('index/', views.index),
+    path('', views.index),
+    #path('registe/', views.registe),
     path('login_action/', views.login_action),
     path('logout_view/', views.logout_view),
     path('login_action/', auth_views.LoginView.as_view()),

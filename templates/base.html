@@ -21,13 +21,14 @@
 </head>
 
 <body>
-  {% if request.user.is_authenticated %}
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
+      {% if request.user.is_authenticated %}
       <div class="navbar-header">
         <a class="navbar-brand" href="#">欢迎，{{ request.user.username }}</a>
         <a class="navbar-brand" href="/logout_view/">退出</a>
       </div>
+      {% endif %}
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#">功能测试</a></li>
@@ -48,49 +49,6 @@
   {% block main %}
   <!-- 中间内容 -->
   {% endblock %}
-
-  {% else %}
-  <!-- 跳转至登录 -->
-  <nav class="navbar navbar-inverse navbar-fixed-top"></nav>
-  <div class="container">
-    <!-- 登录框 -->
-    <form class="form-signin" method="post" action="/login_action/">
-      <div class="center-block">
-        <h2 class="jumbotron">软件测试平台</h2>
-      </div>
-      <div class="form-group">
-        <label for="exampleInputUsername1">Username</label>
-        <input type="text" name="username" id="inputEmail" class="form-control" placeholder="username" required>
-      </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-
-      </div>
-
-      {% if messages %}
-      {% for message in messages %}
-      <p {% if message.tags %} class="{{ message.tags }} bg-danger" {% endif %}>{{ message }}</p>
-      {% endfor %}{% endif %}
-      
-      <div class="form-group">
-        <ul class="pager">
-          <li class="previous"><a href="#"> 立即注册</a></li>
-          <li class="next"><a href="#">忘记密码</a></li>
-        </ul>
-      </div>
-      <div class="form-group">
-        <div class="checkbox">
-          <label>
-            <input type="checkbox"> Remember me
-          </label>
-        </div>
-      </div>
-      {% csrf_token %}
-      <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
-    </form>
-  </div>
-  {% endif %}
 
   <!-- Bootstrap core JavaScript
     ================================================== -->
