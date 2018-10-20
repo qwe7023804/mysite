@@ -28,17 +28,19 @@
         <a class="navbar-brand" href="#">欢迎，{{ request.user.username }}</a>
         <a class="navbar-brand" href="/logout_view/">退出</a>
       </div>
-      {% endif %}
+
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#">功能测试</a></li>
           <li><a href="#">接口测试</a></li>
           <li><a href="#">白盒测试</a></li>
         </ul>
+
         <form class="navbar-form navbar-right">
           <input type="text" class="form-control" placeholder="Search...">
         </form>
       </div>
+      {% endif %}
     </div>
   </nav>
 
