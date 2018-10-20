@@ -25,7 +25,7 @@ def create_project(request):
                                                     'id': eid,
                                                     'time_now': time_now})
 
-#添加创建项目接口
+#创建项目接口
 def add_project(request):
     create_form = ProjectForm(request.POST or None)
     if request.method == 'POST' and create_form.is_valid():

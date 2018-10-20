@@ -3,7 +3,7 @@
 {% block title %}登录{% endblock %}
 {% block main %}
 <!-- 登录框 -->
-<div class="container">
+<!--<div class="container">
   <form class="form-signin" method="post" action="/login_action/">
     <div class="center-block">
       <h2 class="jumbotron">软件测试平台</h2>
@@ -39,5 +39,97 @@
     {% csrf_token %}
     <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
   </form>
+</div>
+ -->
+
+
+
+<div class="panel-group container" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="jumbotron">
+    <h2 class="text-center">软件测试平台</h2>
+  </div>
+  <!--登录-->
+  <div class="panel panel-success">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          登录
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        <form class="form-signin" method="post" action="/login_action/">
+          <div class="form-group">
+            <label for="exampleInputUsername1">Username</label>
+            <input type="text" name="username" id="inputUsername1" class="form-control" placeholder="username" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" name="password" id="inputPassword1" class="form-control" placeholder="password" required>
+          </div>
+          <div>
+            <a href="#">忘记密码</a></li>
+          </div>
+          {% if user is None %}
+          <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <p> {{ message }}</p>
+          </div>
+          {% endif %}
+          <div class="form-group">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox"> Remember me
+              </label>
+            </div>
+          </div>
+          {% csrf_token %}
+          <button class="btn btn-lg btn-primary btn-block" type="submit">立即登录</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!--注册-->
+  <div class="panel panel-info">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          注册
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        <form class="form-signin" method="post" action="/register/">
+          <div class="form-group">
+            <label for="exampleInputUsername1">Username</label>
+            <input type="text" name="username" id="inputUsername2" class="form-control" placeholder="username" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Email</label>
+            <input type="email" name="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" name="password2" id="inputPassword2" class="form-control" placeholder="Password" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" name="password3" id="inputPassword3" class="form-control" placeholder="Password" required>
+          </div>
+          {% csrf_token %}
+          <!-- 判断是否注册，给出提示!-->
+          {% if user is None %}
+          <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <p> {{ message }}</p>
+          </div>
+          {% endif %}
+          <button class="btn btn-lg btn-primary btn-block" type="submit">立即注册</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
