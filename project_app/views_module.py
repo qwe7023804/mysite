@@ -28,7 +28,6 @@ def create_module(request):
 def add_module(request):
     if request.method == 'POST':
         create_form = ModuleForm(request.POST or None)
-        #create_form = ProjectForm(request.POST or None)
         print(create_form)
         if create_form.is_valid():
             project_name = create_form.cleaned_data.get['project_name']
