@@ -27,9 +27,9 @@ def add_project(request):
     create_form = ProjectForm(request.POST or None)
     project_name = request.GET.get('project_name')
     if request.method == 'POST' and create_form.is_valid():
-        project_name = create_form.cleaned_data.get('project_name')
-        project_status = create_form.cleaned_data.get('project_status')
-        project_remarks = create_form.cleaned_data.get('project_remarks')
+        project_name = create_form.cleaned_data['project_name']
+        project_status = create_form.cleaned_data['project_status']
+        project_remarks = create_form.cleaned_data['project_remarks']
         models.Project.objects.create(
                                         project_name = project_name,
                                         project_status = project_status,
@@ -56,9 +56,9 @@ def edit_project(request):
     project_id = request.GET.get('id')
     edit_form = ProjectForm(request.POST or None)
     if request.method == 'POST' and edit_form.is_valid():
-        project_name = edit_form.cleaned_data.get('project_name')
-        project_status = edit_form.cleaned_data.get('project_status')
-        project_remarks = edit_form.cleaned_data.get('project_remarks')
+        project_name = edit_form.cleaned_data['project_name']
+        project_status = edit_form.cleaned_data['project_status']
+        project_remarks = edit_form.cleaned_data['project_remarks']
         print(project_id, project_name, project_remarks)
         models.Project.objects.filter(id = project_id).update(
                     project_name= project_name,
