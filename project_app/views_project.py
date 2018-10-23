@@ -1,8 +1,6 @@
 from django.shortcuts import render
 from project_app.models import Project
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
-from django.core.exceptions import ValidationError
 from django.http import HttpResponseRedirect
 from project_app import models
 from django.utils import timezone
@@ -22,12 +20,12 @@ def create_project(request):
     username = request.session.get('user', '')
     time_now = timezone.now()
     return render(request, 'Project_Information.html', {'username': username,
-                                                    'id': eid,
                                                     'time_now': time_now})
 
 #创建项目接口
 def add_project(request):
     create_form = ProjectForm(request.POST or None)
+    project_name = request.GET.get('project_name')
     if request.method == 'POST' and create_form.is_valid():
         project_name = create_form.cleaned_data.get('project_name')
         project_status = create_form.cleaned_data.get('project_status')
