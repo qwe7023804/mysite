@@ -1,16 +1,21 @@
-from django.conf.urls import url
 from django.urls import path
-from project_app import views_project, views_module
+from project_app.views import project_views
+from project_app.views import module_views
 
 urlpatterns = [
-    path('home/', views_project.home, name='home'),
-    path('create_project/', views_project.create_project, name='create_project'),
-    path('add_project/', views_project.add_project, name='add_project'),
-    path('get_project_list/', views_project.get_project_list, name='get_project_list'),
-    path('edit_project/', views_project.edit_project, name='edit_project'),
-    path('delete_project/', views_project.delete_project, name='delete_project'),
+    # guest system interface:
+    # ex : /manage/project_manage/
+    # 项目管理
+    path('project_manage/', project_views.project_manage),
+    path('add_project/',  project_views.add_project),
+    path('edit_project/<int:pid>/',  project_views.edit_project),
+    path('delete_project/<int:pid>/',  project_views.delete_project),
 
-    path('module/', views_module.module, name='module'),
-    path('create_module/', views_module.create_module, name='create_module'),
-    path('add_module/', views_module.add_module, name='add_module'),
+    # 模块管理
+    path('module_manage/',  module_views.module_manage),
+    path('add_module/',  module_views.add_module),
+    path('edit_module/<int:mid>/',  module_views.edit_module),
+    path('delete_module/<int:mid>/',  module_views.delete_module),
+
+    
 ]
